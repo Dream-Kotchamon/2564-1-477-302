@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+    /*var day;
+    switch (new Date().getDay()){
+       
+        case 0:
+            day ="Sunday";
+            break;
+        case 1:
+            day ="Monday";
+            break;
+        case 2:
+            day ="Tuesday";
+            break;
+        case 3:    
+            day ="Wednesday";
+            break;
+        case 4:    
+            day ="Thursday";
+            break;
+        case 5:    
+            day ="Friday";
+            break;
+        default:
+            day ="Saturday"; 
+    } */
+        var str_day ="";
+        var get_num_day = new Date().getDay();
+         //console.log(get_num_day);
+        switch (get_num_day){
+            case 0:
+                str_day ="วันอาทิตย์";
+                break;
+            case 1:
+                str_day ="วันจันทร์";
+                break;
+            case 2:
+                str_day ="วันอังคาร";
+                break;
+            case 3:
+                str_day ="วันพุธ";
+                break;
+            case 4:
+                str_day ="วันพฤหัสบดี";
+                break;
+            case 5:
+                str_day ="วันศุกร์";
+                break;
+            case 6:
+                str_day ="วันเสาร์";
+                break;
+            default:
+                break;
+        }
+        console.log(str_day);
+
+        var str_month ="";
+        var get_num_month = new Date().getMonth();
+        switch (get_num_month){
+            case 0:
+                str_month="มกราคม";
+                break;
+            case 1:
+                str_month="กุมภาพันธ์";
+                break;
+            case 2:
+                str_month="มีนาคม";
+                break;
+            case 3:
+                str_month="เมษายน";
+                break;
+            case 4:
+                str_month="พฤษภาคม";
+                break;
+            case 5:
+                str_month="มิถุนายน";
+                break;
+            case 6:
+                str_month="กรกฎาคม";
+                break;
+            case 7:
+                str_month="สิงหาคม";
+                break;
+            case 8:
+                str_month="กันยายน";
+                break;
+            case 9:
+                str_month="ตุลาคม";
+                break;
+            case 10:
+                str_month="พฤศจิกายน";
+                break;
+            case 11:
+                str_month="ธันวาคม";
+                break;
+
+        }
+        var get_num_date = new Date().getDate();
+        var get_num_year = parseInt (new Date().getFullYear()) + 543 ;
+        console.log(str_day + "ที่" + get_num_date + "" 
+        + str_month + "" + get_num_year ) 
+        // Wed Aug 04 2021
+        /*console.log(get_num_month)
+        console.log(new Date());*/  
+        //document.getElementById("demo").innerHTML = "TOday is " + day;
+    </script>
+</body>
+</html>

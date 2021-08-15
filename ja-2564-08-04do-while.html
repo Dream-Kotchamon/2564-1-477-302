@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    
+    <script>
+        var get_username = document.getElementById("username").value;
+        var get_passwd = document.getElementById("passwd").value;
+        var ant_login = 0, max_login =3;
+        var chk_login = false;
+        do{
+            if(get_username == "admin" && get_passwd == "1234"){
+                chk_login =true;
+                break;
+            } else{
+                chk_login = false;
+                cnt_login++;
+            }
+        } while(cnt_login < max_login);
+        if(chk_login == true) {
+                alert("Welcome to our website.");
+            } else{
+                alert("You can't access.");
+            }
+        document.getElementById("demo").innerHTML =text;
+    </script>
+        
+</body>
+</html>
