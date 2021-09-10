@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz-2</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <style>
+    body {
+      color: rgb(94, 60, 47);
+      font-family: 'Prompt', sans-serif;
+      background-color: rgb(221, 205, 154); 
+    }
+    
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+
+  <script src=""></script>
+
+  <!-- เปิด-ปิด dialog -->
+  <script>
+    function show_dialog() {
+      var showdialog = document.getElementById("myDialog");
+      showdialog.showModal();
+    }
+    function close_dialog() {
+      var closedialog = document.getElementById("myDialog");
+      closedialog.close()
+    }
+  </script>
+
+
+
+  
+  <!-- นับจำนวนครั้งที่ผู้ใช้กดแสดงแผนที่ -->
+  <script>
+    function clickCounter() {
+      if (typeof (Storage) !== "undefined") {
+        if (localStorage.clickcount) {
+          localStorage.clickcount = Number(localStorage.clickcount) + 1;
+        } else {
+          localStorage.clickcount = 1;
+        }
+        document.getElementById("counter").innerHTML = "You've already clicked on your location. " + localStorage.clickcount + " Time.";
+      } else {
+        document.getElementById("counter").innerHTML = "Sorry, your browser does not support web storage...";
+      }
+    }
+    function del() {
+      localStorage.removeItem("clickcount");
+      document.getElementById("counter").innerHTML = "You've already clicked on your location. " + "0" + " Time.";
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- ส่วนเนื้อหา -->
+  <div align=center>
+    <br><br>
+    <p id="demo">Location</p>
+      <button onclick="getLocation()">ดูแผนที่</button>
+      <div id="mapholder"></div>
+  
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoKoNVKdXRrp8YDgara5W1m2nfTU1dG5g&callback=initMap"
+    type="text/javascript"></script>
+      <script>
+      var x = document.getElementById("demo");
+      function getLocation() {
+          if (navigator.geolocation) {
+              /* glat = prompt("Enter your latitude", 0);
+              glon = prompt("Enter your longitude", 0);
+              showPosition(glat, glon); */
+              navigator.geolocation.getCurrentPosition(showPosition, showError);
+          } else {
+              x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+      }
+      function showPosition(position) {
+          lat = position.coords.latitude;
+          lon = position.coords.longitude;
+          //glat = [6.998068, 6.998838] ;
+          //glon = [100.482465, 100.480831];
+          latlon = new google.maps.LatLng(lat, lon)
+          mapholder = document.getElementById('mapholder')
+          mapholder.style.height = '350px';
+          mapholder.style.width = '500px';
+  
+          var myOptions = {
+              center: latlon,
+              zoom:16,
+              mapTypeId:google.maps.MapTypeId.ROADMAP,
+              mapTypeControl:false,
+              navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+          }
+  
+          var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
+          var marker = new google.maps.Marker({position:latlon, map:map, title:"You are here!"});
+      }
+  
+      function showError(error) {
+         switch(error.code) {
+             case error.PERMISSION_DENIED:
+                 x.innerHTML = "User denied the request for Geolocation."
+                 break;
+             case error.POSITION_UNAVAILABLE:
+                 x.innerHTML = "Location information is unavailable."
+                 break;
+             case error.TIMEOUT:
+                 x.innerHTML = "The request to get user location timed out."
+                 break;
+             case error.UNKNOWN_ERROR:
+                 x.innerHTML = "An unknown error occurred."
+                 break;
+         }
+     }
+          </script>
+  </div>
+  <!-- map -->
+ 
+
+
+  
+</body>
+
+</html>
